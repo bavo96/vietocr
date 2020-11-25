@@ -9,10 +9,13 @@ class ImgAugTransform:
     sometimes = lambda aug: iaa.Sometimes(0.5, aug)
 
     self.aug = iaa.SomeOf(1, 
-        [sometimes(iaa.GaussianBlur(sigma=(0, 1.0))),
-        sometimes(iaa.MotionBlur(k=3)),
+        [
+        #sometimes(iaa.GaussianBlur(sigma=(0, 1.0))),
+        #sometimes(iaa.MotionBlur(k=3)),
+        sometimes(iaa.Dropout2d(p=0.5)),
         sometimes(iaa.AddToHueAndSaturation(value=(-10, 10), per_channel=True)),
         sometimes(iaa.PiecewiseAffine(scale=(0.01, 0.03))),
+        sometimes(iaa.Add((-40, 40), per_channel=0.5)),
         sometimes(iaa.Invert(0.25, per_channel=0.5)),
         sometimes(iaa.Rotate((-20, 20)))
     ])
