@@ -14,7 +14,7 @@ class ImgAugTransform:
         sometimes(iaa.AddToHueAndSaturation(value=(-10, 10), per_channel=True)),
         sometimes(iaa.PiecewiseAffine(scale=(0.01, 0.03))),
         sometimes(iaa.Invert(0.25, per_channel=0.5)),
-        sometimes(iaa.Rotate(-20, 20))
+        sometimes(iaa.Rotate((-20, 20)))
     ])
       
   def __call__(self, img):
