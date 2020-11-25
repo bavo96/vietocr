@@ -12,12 +12,11 @@ class ImgAugTransform:
         [
         #sometimes(iaa.GaussianBlur(sigma=(0, 1.0))),
         #sometimes(iaa.MotionBlur(k=3)),
-        sometimes(iaa.Dropout2d(p=0.5)),
-        sometimes(iaa.AddToHueAndSaturation(value=(-10, 10), per_channel=True)),
+        sometimes(iaa.GammaContrast((0.5, 2.0), per_channel=True)),
         sometimes(iaa.PiecewiseAffine(scale=(0.01, 0.03))),
-        sometimes(iaa.Add((-40, 40), per_channel=0.5)),
         sometimes(iaa.Invert(0.25, per_channel=0.5)),
-        sometimes(iaa.Rotate((-20, 20)))
+        sometimes(iaa.Rotate((-20, 20))),
+        sometimes(iaa.LogContrast(gain=(0.6, 1.4), per_channel=True))
     ])
       
   def __call__(self, img):
